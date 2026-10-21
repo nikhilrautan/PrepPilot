@@ -71,6 +71,13 @@ async function generateInterViewReportController(req, res) {
 async function getInterviewReportByIdController(req, res) {
     try {
         const { interviewReportId } = req.params;
+        console.log("Received report ID:", interviewReportId);
+console.log("ID type:", typeof interviewReportId);
+console.log("ID length:", interviewReportId?.length);
+console.log(
+    "Is valid ObjectId:",
+    interviewReportModel.db.base.Types.ObjectId.isValid(interviewReportId)
+);
 
         if (!interviewReportModel.db.base.Types.ObjectId.isValid(interviewReportId)) {
             return res.status(400).json({

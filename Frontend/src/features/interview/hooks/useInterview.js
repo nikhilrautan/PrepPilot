@@ -30,19 +30,23 @@ export const useInterview = () => {
         return response.interviewReport
     }
 
-    const getReportById = async (interviewId) => {
-        setLoading(true)
-        let response = null
-        try {
-            response = await getInterviewReportById(interviewId)
-            setReport(response.interviewReport)
-        } catch (error) {
-            console.log(error)
-        } finally {
-            setLoading(false)
+   const getReportById = async (interviewReportId) => {
+    try {
+        const response = await getInterviewReportById(interviewReportId);
+
+        if (!response?.interviewReport) {
+            console.error("Interview report not found");
+            return;
         }
-        return response.interviewReport
+
+        setInterviewReport(response.interviewReport);
+    } catch (error) {
+        console.error(
+            "Failed to fetch report:",
+            error.response?.data?.message || error.message
+        );
     }
+};
 
     const getReports = async () => {
         setLoading(true)

@@ -62,11 +62,15 @@ const Interview = () => {
     const { report, getReportById, loading, getResumePdf } = useInterview()
     const { interviewId } = useParams()
 
-    useEffect(() => {
-        if (interviewId) {
-            getReportById(interviewId)
-        }
-    }, [ interviewId ])
+   
+useEffect(() => {
+    if (interviewId) {
+        console.log("Interview ID from URL:", interviewId);
+        console.log("Interview ID length:", interviewId.length);
+
+        getReportById(interviewId);
+    }
+}, [interviewId, getReportById]);
 
 
 
