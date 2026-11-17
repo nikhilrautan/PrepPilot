@@ -2,6 +2,8 @@
 
 **AI-powered job preparation platform.** Upload your resume, paste a job description, and PrepPilot generates a personalized interview plan: match score, skill gaps, likely interview questions, a preparation roadmap, and an ATS-optimized resume PDF.
 
+
+https://prep-pilot-smoky.vercel.app/
 ---
 
 ## Features
