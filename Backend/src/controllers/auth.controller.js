@@ -125,22 +125,27 @@ async function logoutUserController(req, res) {
  * @access private
  */
 async function getMeController(req, res) {
+    try {
+        const user = await userModel.findById(req.user.id)
 
-    const user = await userModel.findById(req.user.id)
-
-
-
-    res.status(200).json({
-        message: "User details fetched successfully",
-        user: {
-            id: user._id,
-            username: user.username,
-            email: user.email
+        if (!user) {
+            res.clearCookie("token")
+            return res.status(401).json({ message: "User not found. Please log in again." })
         }
-    })
 
+        return res.status(200).json({
+            message: "User fetched successfully.",
+            user: {
+                id: user._id,
+                username: user.username,
+                email: user.email
+            }
+        })
+    } catch (error) {
+        console.error("getMe error:", error)
+        return res.status(500).json({ message: "Failed to fetch user." })
+    }
 }
-
 
 
 module.exports = {

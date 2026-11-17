@@ -13,7 +13,7 @@ export const useInterview = () => {
         throw new Error("useInterview must be used within an InterviewProvider")
     }
 
-    const { loading, setLoading, report, setReport, reports, setReports } = context
+    const { loading, setLoading, report, setReport, reports, setReports } = useContext(InterviewContext);
 
     const generateReport = async ({ jobDescription, selfDescription, resumeFile }) => {
         setLoading(true)
@@ -27,7 +27,7 @@ export const useInterview = () => {
             setLoading(false)
         }
 
-        return response.interviewReport
+        return response?.interviewReport
     }
 
    const getReportById = async (interviewReportId) => {
@@ -39,7 +39,7 @@ export const useInterview = () => {
             return;
         }
 
-        setInterviewReport(response.interviewReport);
+        setReport(response.interviewReport);
     } catch (error) {
         console.error(
             "Failed to fetch report:",
@@ -60,7 +60,7 @@ export const useInterview = () => {
             setLoading(false)
         }
 
-        return response.interviewReports
+        return response?.interviewReports
     }
 
     const getResumePdf = async (interviewReportId) => {

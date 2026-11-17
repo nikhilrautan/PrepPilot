@@ -63,16 +63,6 @@ const Interview = () => {
     const { interviewId } = useParams()
 
    
-useEffect(() => {
-    if (interviewId) {
-        console.log("Interview ID from URL:", interviewId);
-        console.log("Interview ID length:", interviewId.length);
-
-        getReportById(interviewId);
-    }
-}, [interviewId, getReportById]);
-
-
 
     if (loading || !report) {
         return (

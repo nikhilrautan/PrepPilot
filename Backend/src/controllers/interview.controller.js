@@ -70,25 +70,19 @@ async function generateInterViewReportController(req, res) {
  */
 async function getInterviewReportByIdController(req, res) {
     try {
-        const { interviewReportId } = req.params;
-        console.log("Received report ID:", interviewReportId);
-console.log("ID type:", typeof interviewReportId);
-console.log("ID length:", interviewReportId?.length);
-console.log(
-    "Is valid ObjectId:",
-    interviewReportModel.db.base.Types.ObjectId.isValid(interviewReportId)
-);
+        const { interviewId } = req.params;
 
-        if (!interviewReportModel.db.base.Types.ObjectId.isValid(interviewReportId)) {
+        if (!interviewReportModel.db.base.Types.ObjectId.isValid(interviewId)) {
             return res.status(400).json({
                 message: "Invalid interview report ID."
             });
         }
 
         const interviewReport = await interviewReportModel.findOne({
-            _id: interviewReportId,
+            _id: interviewId,
             user: req.user.id
         }).select("-__v");
+        // ...rest unchanged
 
         if (!interviewReport) {
             return res.status(404).json({
