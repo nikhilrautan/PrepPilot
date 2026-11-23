@@ -19,7 +19,7 @@ const Login = () => {
         setError("")
         const result = await handleLogin({ email, password })
         if (result.success) {
-            navigate('/')
+            navigate('/create')
         } else {
             setError(result.message || "Login failed. Try again.")
         }
@@ -40,6 +40,13 @@ const Login = () => {
     return (
         <main className="auth-page">
             <AuthBackdrop />
+
+            {/* Back to landing page */}
+            <button type="button" className="back-btn" onClick={() => navigate('/')}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
+                Back
+            </button>
+
             <div className="form-container">
                 <span className="brand-sun" aria-hidden="true" />
                 <h1>Login</h1>

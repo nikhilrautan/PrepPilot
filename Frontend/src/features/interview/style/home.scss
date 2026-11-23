@@ -55,6 +55,32 @@ $danger: #ffb3a0;
         padding: 40px 20px 32px;
     }
 
+    // ---- back button ----
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 18px;
+        padding: 8px 16px 8px 12px;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        color: $ink;
+        background: $card;
+        border: 1px solid $line;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        cursor: pointer;
+        transition: transform .15s, border-color .15s, background .15s;
+
+        svg { color: $gold; transition: transform .15s; }
+
+        &:hover { border-color: $gold; background: rgba($gold, .16); }
+        &:hover svg { transform: translateX(-3px); }
+        &:active { transform: scale(.97); }
+    }
+
     // ---- header ----
     .page-header {
         text-align: center;
@@ -428,6 +454,7 @@ $danger: #ffb3a0;
     // ---- keyboard focus ----
     .panel__textarea:focus-visible,
     .chip:focus-visible,
+    .back-btn:focus-visible,
     .generate-btn:focus-visible,
     .file-selected__remove:focus-visible,
     .report-item:focus-visible,

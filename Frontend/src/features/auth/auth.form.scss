@@ -49,6 +49,36 @@ $danger: #ffb3a0;
         z-index: 1;
         background: radial-gradient(ellipse at 50% 45%, rgba(20, 8, 4, $shade-center), rgba(20, 8, 4, $shade-edge));
     }
+
+    // ---- back button (top-left of the screen) ----
+    .back-btn {
+        position: fixed;
+        top: 24px;
+        left: 24px;
+        z-index: 3;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px 8px 12px;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        color: $ink;
+        background: $card;
+        border: 1px solid $line;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        cursor: pointer;
+        transition: transform .15s, border-color .15s, background .15s;
+
+        svg { color: $gold; transition: transform .15s; }
+
+        &:hover { border-color: $gold; background: rgba($gold, .16); }
+        &:hover svg { transform: translateX(-3px); }
+        &:active { transform: scale(.97); }
+        &:focus-visible { outline: none; border-color: $gold; box-shadow: 0 0 0 3px rgba($gold, .35); }
+    }
 }
 
 .auth-page .form-container {
@@ -226,6 +256,9 @@ $danger: #ffb3a0;
 
         h1 { font-size: 34px; }
     }
+
+    // keep the back button clear of the card on small screens
+    .auth-page .back-btn { top: 14px; left: 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

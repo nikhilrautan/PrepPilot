@@ -29,6 +29,9 @@ const EXPERIENCE = [
     { label: '5+ yrs', text: '5+ years of experience.' },
 ]
 
+// Where the back button sends the user (change this if your landing page lives elsewhere)
+const LANDING_PATH = '/'
+
 const formatFileSize = (bytes) =>
     bytes < 1024 * 1024
         ? `${Math.max(1, Math.round(bytes / 1024))} KB`
@@ -208,6 +211,12 @@ const Home = () => {
             {background}
 
             <div className='home-content'>
+
+                {/* Back to landing page */}
+                <button type='button' className='back-btn' onClick={() => navigate(LANDING_PATH)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12" /><polyline points="12 19 5 12 12 5" /></svg>
+                    Back
+                </button>
 
                 {/* Page Header */}
                 <header className='page-header'>
