@@ -11,6 +11,7 @@ const Login = () => {
 
     const [ email, setEmail ] = useState("")
     const [ password, setPassword ] = useState("")
+    const [ showPassword, setShowPassword ] = useState(false)
     const [ error, setError ] = useState("")
 
     const handleSubmit = async (e) => {
@@ -28,9 +29,9 @@ const Login = () => {
         return (
             <main className="auth-page">
                 <AuthBackdrop />
-                <div className="auth-loading" role="status">
-                    <span className="rune-pulse" aria-hidden="true">ᚠ</span>
-                    <h1>Loading...</h1>
+                <div className="auth-loading" role="status" aria-live="polite">
+                    <span className="rising-sun" aria-hidden="true" />
+                    <h1>One moment…</h1>
                 </div>
             </main>
         )
@@ -40,9 +41,9 @@ const Login = () => {
         <main className="auth-page">
             <AuthBackdrop />
             <div className="form-container">
-                <p className="rune-line" aria-hidden="true">ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ</p>
+                <span className="brand-sun" aria-hidden="true" />
                 <h1>Login</h1>
-                <p className="form-tagline">Return to the hearth, traveler.</p>
+                <p className="form-tagline">Welcome back. Your next interview is waiting.</p>
 
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
@@ -55,13 +56,24 @@ const Login = () => {
                     </div>
                     <div className="input-group">
                         <label htmlFor="password">Password</label>
-                        <input
-                            value={password}
-                            onChange={(e) => { setPassword(e.target.value) }}
-                            type="password" id="password" name='password' autoComplete="current-password"
-                            placeholder='Enter password' required />
+                        <div className="password-field">
+                            <input
+                                value={password}
+                                onChange={(e) => { setPassword(e.target.value) }}
+                                type={showPassword ? 'text' : 'password'} id="password" name='password'
+                                autoComplete="current-password"
+                                placeholder='Enter password' required />
+                            <button type="button" className="toggle-password"
+                                onClick={() => setShowPassword(s => !s)}
+                                aria-label={showPassword ? 'Hide password' : 'Show password'}
+                                aria-pressed={showPassword}>
+                                {showPassword ? 'Hide' : 'Show'}
+                            </button>
+                        </div>
                     </div>
+
                     {error && <p className="form-error" role="alert">{error}</p>}
+
                     <button className='button primary-button'>Login</button>
                 </form>
 

@@ -10,6 +10,13 @@ $gold: #ffb347;
 $ember: #ff7a2f;
 $ok: #ffe08a;
 $dark-text: #2b1408;
+
+// Background tuning: raise $bg-blur to blur more, raise $bg-brightness to lighten,
+// lower $shade-edge / $shade-center to lighten the dark overlay.
+$bg-blur: 14px;
+$bg-brightness: .98;
+$shade-center: .04;
+$shade-edge: .5;
 $danger: #ffb3a0;
 
 .home-page {
@@ -25,11 +32,11 @@ $danger: #ffb3a0;
 
     .home-bg {
         position: fixed;
-        inset: -4%;
+        inset: -6%;
         z-index: 0;
         background-size: cover;
         background-position: center;
-        filter: saturate(1.05) brightness(.8);
+        filter: blur($bg-blur) saturate(1.05) brightness($bg-brightness);
         transition: transform .25s ease-out;
     }
 
@@ -37,7 +44,7 @@ $danger: #ffb3a0;
         position: fixed;
         inset: 0;
         z-index: 1;
-        background: radial-gradient(ellipse at 50% 40%, rgba(20, 8, 4, .15), rgba(20, 8, 4, .7));
+        background: radial-gradient(ellipse at 50% 40%, rgba(20, 8, 4, $shade-center), rgba(20, 8, 4, $shade-edge));
     }
 
     .home-content {
